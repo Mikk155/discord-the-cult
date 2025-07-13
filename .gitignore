@@ -3,3 +3,5 @@ release/linux/
 
 src/bin/
 src/obj/
+
+devrun.bat
