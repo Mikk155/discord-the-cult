@@ -1,0 +1,21 @@
+{
+    "files.exclude":
+    {
+        "release/windows/": true,
+        "release/linux/": true,
+        "src/bin/": true,
+        "src/obj/": true
+    },
+    "search.exclude":
+    {
+        "release/windows/": true,
+        "release/linux/": true,
+        "src/bin/": true,
+        "src/obj/": true
+    },
+
+    "[csharp]":
+    {
+        "editor.indentSize": 4
+    }
+}

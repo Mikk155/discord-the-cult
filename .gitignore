@@ -1,2 +1,5 @@
-src/bin/*
-src/obj/*
+release/windows/
+release/linux/
+
+src/bin/
+src/obj/
