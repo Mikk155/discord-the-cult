@@ -25,25 +25,14 @@ class Program
 
             try
             {
-                await builder.ConnectAsync();
-
-                await Task.Delay(-1);
-
-                builder.ConfigureEventHandlers
-                (
-                    b => b.HandleMessageCreated( async ( s, e ) => 
-                    {
-                        if( e.Message.Content.ToLower().StartsWith( "ping" ) )
-                        {
-                            await e.Message.RespondAsync( "pong!" );
-                        }
-                    })
-                );
-
                 builder.ConfigureEventHandlers
                 (
                     b => b.HandleMessageCreated(MessageCreatedHandler)
                 );
+
+                await builder.ConnectAsync();
+
+                await Task.Delay(-1);
 
                 break;
             }
