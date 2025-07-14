@@ -19,6 +19,9 @@
         "editor.indentSize": 4,
         "editor.formatOnPaste": false,
         "editor.formatOnSave": false,
-        "editor.formatOnType": false
-    }
+        "editor.formatOnType": false,
+        "editor.codeLens": false
+    },
+
+    "color-highlight.matchRgbWithNoFunction": true
 }
