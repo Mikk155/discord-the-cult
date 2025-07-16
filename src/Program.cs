@@ -39,7 +39,8 @@ class Program
             {
                 builder.ConfigureEventHandlers
                 (
-                    b => b.HandleMessageCreated( OnMessage )
+                    b => b.HandleMessageCreated(OnMessage)
+                    .HandleSessionCreated(OnReady)
                 );
 
                 await builder.ConnectAsync();
@@ -67,5 +68,9 @@ class Program
             if( await fn(s, e) )
                 break;
         }
+    }
+
+    private static async Task OnReady( DiscordClient s, SessionCreatedEventArgs e )
+    {
     }
 }
