@@ -4,7 +4,7 @@ cd ..
 cd src
 
 echo Compiling TheCult.csproj...
-dotnet publish TheCult.csproj -c Release -r win-x64 -p:PublishSingleFile=true -p:PublishTrimmed=true --self-contained true
+dotnet publish TheCult.csproj -c Release -r win-x64 -p:PublishSingleFile=true --self-contained true
 
 if %ERRORLEVEL% NEQ 0 (
     echo ERROR
