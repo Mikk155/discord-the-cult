@@ -47,11 +47,22 @@ public class Reposter
 
     private async Task<int> CheckAndUpload()
     {
+        DiscordGuild? guild = null;
+
+        try
+        {
 #if DEBUG
-        DiscordGuild? guild = await _client.GetGuildAsync( 1145236064596918304 );
+            guild = await _client.GetGuildAsync( 1145236064596918304 );
 #else
-        DiscordGuild? guild = await _client.GetGuildAsync( 1216162825307820042 );
+            guild = await _client.GetGuildAsync( 1216162825307820042 );
 #endif
+        }
+        catch( DSharpPlus.Exceptions.NotFoundException ) {
+            return 0;
+        }
+        catch( DSharpPlus.Exceptions.ServerErrorException ) {
+            return 0;
+        }
 
         if( guild is null )
             return 0;
@@ -91,7 +102,17 @@ public class Reposter
                 continue;
             }
 
-            IReadOnlyList<DiscordChannel> GuildChannels = await guild.GetChannelsAsync();
+            IReadOnlyList<DiscordChannel> GuildChannels;
+
+            try {
+                GuildChannels = await guild.GetChannelsAsync();
+            }
+            catch( DSharpPlus.Exceptions.ServerErrorException ) {
+                continue;
+            }
+            catch( DSharpPlus.Exceptions.NotFoundException ) {
+                continue;
+            }
 
             DiscordChannel? channel = GuildChannels.FirstOrDefault( c => c.Name.Equals( FolderName ) );
 
@@ -100,9 +121,14 @@ public class Reposter
 
             using( FileStream stream = File.OpenRead( file ) )
             {
-                await channel.SendMessageAsync( new DiscordMessageBuilder()
-                    .AddFile( Path.GetFileName( file ), stream )
-                );
+                try
+                {
+                    await channel.SendMessageAsync( new DiscordMessageBuilder()
+                        .AddFile( Path.GetFileName( file ), stream )
+                    );
+                }
+                catch( DSharpPlus.Exceptions.UnauthorizedException ) {}
+                catch( DSharpPlus.Exceptions.ServerErrorException ) {}
             }
 
             File.Delete( FileFullPath );
