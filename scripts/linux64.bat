@@ -16,13 +16,11 @@ if %ERRORLEVEL% NEQ 0 (
 echo Moving release...
 xcopy /E /Y bin\Release\net9.0\linux-x64\publish\TheCult.exe ..\release\linux\
 
-@echo off
+@REM echo Clearing obj...
+@REM rmdir /S /Q obj
 
-echo Clearing obj...
-rmdir /S /Q obj
-
-echo Clearing bin...
-rmdir /S /Q bin
+@REM echo Clearing bin...
+@REM rmdir /S /Q bin
 
 echo All done!
 
