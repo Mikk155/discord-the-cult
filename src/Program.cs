@@ -5,6 +5,8 @@ delegate Task<bool> MessageHandlerDelegate( DiscordClient s, MessageCreatedEvent
 
 class Program
 {
+    public static Reposter? ReposterScheduler;
+
     public static string Workspace()
     {
 #if DEBUG
@@ -76,5 +78,7 @@ class Program
 
     private static async Task OnReady( DiscordClient s, SessionCreatedEventArgs e )
     {
+        ReposterScheduler = new Reposter(s);
+        ReposterScheduler.Start();
     }
 }

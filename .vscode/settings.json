@@ -4,14 +4,16 @@
         "release/windows/": true,
         "release/linux/": true,
         "src/bin/": true,
-        "src/obj/": true
+        "src/obj/": true,
+        "furnace/": true
     },
     "search.exclude":
     {
         "release/windows/": true,
         "release/linux/": true,
         "src/bin/": true,
-        "src/obj/": true
+        "src/obj/": true,
+        "furnace/": true
     },
 
     "[csharp]":
