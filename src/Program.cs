@@ -5,11 +5,15 @@ delegate Task<bool> MessageHandlerDelegate( DiscordClient s, MessageCreatedEvent
 
 class Program
 {
+    public static string Workspace()
+    {
 #if DEBUG
-    public static readonly bool isDebug = true;
+        return Path.GetDirectoryName( Directory.GetCurrentDirectory() ) ??
+            Path.Combine( Directory.GetCurrentDirectory(), ".." ); // dotnet run directory is in within src/
 #else
-    public static readonly bool isDebug = false;
+        return Directory.GetCurrentDirectory();
 #endif
+    }
 
     static async Task Main( string[] args )
     {
