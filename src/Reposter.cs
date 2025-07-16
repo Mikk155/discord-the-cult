@@ -58,7 +58,10 @@ public class Reposter
 
         string RepostDirectory = Path.Combine( Program.Workspace(), "furnace" );
 
-        string SaveDirectory = Path.Combine( RepostDirectory, "big_files" );
+        if( !Directory.Exists( RepostDirectory ) )
+            return 0;
+
+//        string SaveDirectory = Path.Combine( RepostDirectory, "big_files" );
 
         foreach( string FolderName in FolderChannels )
         {
