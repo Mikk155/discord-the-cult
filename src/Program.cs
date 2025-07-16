@@ -5,6 +5,12 @@ delegate Task<bool> MessageHandlerDelegate( DiscordClient s, MessageCreatedEvent
 
 class Program
 {
+#if DEBUG
+    public static readonly bool isDebug = true;
+#else
+    public static readonly bool isDebug = false;
+#endif
+
     static async Task Main( string[] args )
     {
         string? token = args.Length > 0 ? args[0] : null;
