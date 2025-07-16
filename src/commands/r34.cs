@@ -18,6 +18,12 @@ public static class CommandRule34
         if( !e.Message.Content.ToLower().StartsWith( "r34" ) )
             return false;
 
+        if( !e.Channel.IsNSFW )
+        {
+            await e.Message.RespondAsync("This interaction only works on a NSFW channel");
+            return true;
+        }
+
         R34Sharp.Models.R34FormattedTag[] Tags = [.. e.Message.Content
             .Split(' ')
             .Skip(1)
