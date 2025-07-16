@@ -26,7 +26,13 @@ class Program
 
             DiscordClientBuilder builder = DiscordClientBuilder.CreateDefault(
                 token,
-                DiscordIntents.AllUnprivileged | DiscordIntents.MessageContents
+                (
+                    DiscordIntents.AllUnprivileged |
+                    DiscordIntents.MessageContents |
+                    DiscordIntents.GuildMembers |
+                    DiscordIntents.GuildMessageReactions |
+                    DiscordIntents.Guilds
+                )
             );
 
             try
