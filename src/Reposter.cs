@@ -94,9 +94,6 @@ public class Reposter
 
         foreach( string FolderName in RandomChannels )
         {
-            Console.WriteLine( $"FolderName {FolderName}" );
-            continue;
-
             string FolderPath = Path.Combine( RepostDirectory, FolderName );
 
             if( !Directory.Exists( FolderPath ) )
