@@ -7,9 +7,24 @@ public class Reposter
     private readonly DiscordClient _client;
 
     private readonly string[] FolderChannels = [
-        "trusted",
-        "users",
-        "welcome"
+        "cosplay",
+        "funny",
+        "furry",
+        "general",
+        "lesbian",
+        "media",
+        "shemale",
+        "strange-bizarre",
+        "strong-girls",
+        "trap",
+        "welcome",
+        "yuri",
+        "2dmedia",
+        "ai-generated",
+        "alternative",
+        "asians",
+        "big_files",
+        "bots"
     ];
 
     public Reposter( DiscordClient c )
@@ -74,8 +89,14 @@ public class Reposter
 
 //        string SaveDirectory = Path.Combine( RepostDirectory, "big_files" );
 
-        foreach( string FolderName in FolderChannels )
+        Random rnd = new Random();
+        string[] RandomChannels = [ .. FolderChannels.OrderBy( _ => rnd.Next() ) ];
+
+        foreach( string FolderName in RandomChannels )
         {
+            Console.WriteLine( $"FolderName {FolderName}" );
+            continue;
+
             string FolderPath = Path.Combine( RepostDirectory, FolderName );
 
             if( !Directory.Exists( FolderPath ) )
